@@ -1,9 +1,10 @@
-import os
 from partitions_operations import PartitionOperations as PartOps
 from partitions_schemes import PartitionSchemes
 
+
 def welcome() -> None:
     print("Welcome to Creep's Arch Install Script.")
+
 
 def choice_partition_scheme() -> PartitionSchemes:
     print("These are the supported partition schemes:")
@@ -24,7 +25,7 @@ def choice_partition_scheme() -> PartitionSchemes:
 
 def user_input_partition(partitions: PartOps.lsblk_output) -> str:
     # TODO: Implement this.
-    
+
     try:
         desired_partition = input("Select an option -> ")
 

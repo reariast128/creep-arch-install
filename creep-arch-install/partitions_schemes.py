@@ -1,5 +1,6 @@
 from enum import Enum, auto
 
+
 class PartitionSchemes(Enum):
     """Enum to represent supported partition schemes. Currently are supported `CLASSIC_SCHEME` and `SEPARATED_HOME_SCHEME`."""
     CLASSIC_SCHEME = auto()
