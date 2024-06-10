@@ -3,10 +3,14 @@ from partitions_schemes import PartitionSchemes
 
 
 def welcome() -> None:
+    """Prints welcome message."""
+
     print("Welcome to Creep's Arch Install Script.")
 
 
 def choice_partition_scheme() -> PartitionSchemes:
+    """Asks to the user which partitions scheme desires and return a `PartitionScheme`."""
+
     print("These are the supported partition schemes:")
     print("\t( 1 ) Classic scheme: You will have a `/` ext4 partition, and a `/boot` fat32 partition.")
     print("\t( 2 ) Separated home scheme: You will have a `/` ext4 partition, a `/home` partition, and a `/boot` partition.")
