@@ -1,5 +1,6 @@
 from json import loads
 import os
+import subprocess
 from typing import List, Dict
 from partitions_schemes import PartitionSchemes
 
@@ -36,20 +37,22 @@ class PartitionOperations:
         The returned JSON is in this format:
 
         [
-            "name": ...,
-            "size": ...,
-            "type": ...,
-            "mountpoints": [
-                ...
-            ],
-            "children": [
+            {
                 "name": ...,
                 "size": ...,
                 "type": ...,
                 "mountpoints": [
                     ...
+                ],
+                "children": [
+                    "name": ...,
+                    "size": ...,
+                    "type": ...,
+                    "mountpoints": [
+                        ...
+                    ]
                 ]
-            ]
+            },
             ...
         ]
         """
@@ -63,8 +66,26 @@ class PartitionOperations:
         except os.error as e:
             print(f"An error has ocurred: {e}")
 
-    def _format_classic_scheme(self) -> None:
+    def _select_disk(self) -> str:
+        """Return a disk of the system partitions."""
+
+        disk = ""
+
+        while disk not in (system_disks["name"] for system_disks
+                           in self.system_partition if system_disks["type"] == "disk"):
+            disk = input(
+                "Please, type the desired drive for this operation -> ")
+
+        return disk
+
+    def _select_partition(self, disk) -> str:
+        # TODO: Implement this.
         ...
+
+    def _format_classic_scheme(self) -> None:
+        """Format with a `/` and a `/boot` partition."""
+        disk = self._select_disk()
+        print(disk)
 
     def _format_separated_home_scheme(self) -> None:
         ...
@@ -102,3 +123,19 @@ class PartitionOperations:
         while line:
             line = partitions.read()
             print(line)
+
+    def format_by_selected_partition_scheme(self) -> None:
+        """Execute the format method related to each partition scheme."""
+
+        match self.desired_partition_scheme:
+            case PartitionSchemes.CLASSIC_SCHEME:
+                self._format_classic_scheme()
+
+            case PartitionSchemes.SEPARATED_HOME_SCHEME:
+                self._format_separated_home_scheme()
+
+            case PartitionSchemes.SWAP_CLASSIC_SCHEME:
+                self._format_classic_swap_scheme()
+
+            case PartitionSchemes.SWAP_SEPARATED_HOME_SCHEME:
+                self._format_separated_home_swap_scheme()
