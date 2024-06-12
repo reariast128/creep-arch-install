@@ -6,5 +6,5 @@ class PartitionSchemes(Enum):
     CLASSIC_SCHEME = auto()
     SEPARATED_HOME_SCHEME = auto()
     SWAP_CLASSIC_SCHEME = auto()
-    SWAP_HOME_SCHEME = auto()
+    SWAP_SEPARATED_HOME_SCHEME = auto()
     CUSTOM_SCHEME = auto()
