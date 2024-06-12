@@ -27,7 +27,7 @@ class Preparation:
         return manufacturer
 
     @staticmethod
-    def check_internet_connection(host: str = "9.9.9.9", port: int = 53, timeout: int = 3) -> bool:
+    def check_internet_connection(host: str = "95.217.163.246", port: int = 80, timeout: int = 3) -> bool:
         """Checks internet connection trying to connect to a DNS server."""
 
         print(f"Trying to connect to {host}")
@@ -36,6 +36,7 @@ class Preparation:
             socket.setdefaulttimeout(timeout)
             socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect(
                 (host, port))
+            print("Nice! We have internet.")
             return True
 
         except socket.error as ex:
@@ -45,6 +46,8 @@ class Preparation:
     @staticmethod
     def update_system_clock() -> None:
         """This method updated the system clock using timedatectl."""
+        
+        print("Updating date...\n\n")
 
         try:
             subprocess.run(["timedatectl"])
