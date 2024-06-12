@@ -44,6 +44,8 @@ class Preparation:
 
     @staticmethod
     def update_system_clock() -> None:
+        """This method updated the system clock using timedatectl."""
+
         try:
             subprocess.run(["timedatectl"])
 
