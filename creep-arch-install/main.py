@@ -44,5 +44,5 @@ if __name__ == "__main__":
 
     welcome()
     cpu_manufacturer = Preparation.get_cpu_manufacturer()
-    Preparation.verify_internet_connection()
+    Preparation.check_internet_connection()
     Preparation.update_system_clock()
