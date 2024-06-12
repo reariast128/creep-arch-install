@@ -1,5 +1,6 @@
 from partitions_operations import PartitionOperations as PartOps
 from partitions_schemes import PartitionSchemes
+from preparation import Preparation
 
 
 def welcome() -> None:
@@ -38,6 +39,10 @@ def user_input_partition(partitions: PartOps.lsblk_output) -> str:
 
 
 if __name__ == "__main__":
+
+    # Stage 0: Preparation
+
     welcome()
-    desired_partition_scheme = choice_partition_scheme()
-    print(desired_partition_scheme.name)
+    cpu_manufacturer = Preparation.get_cpu_manufacturer()
+    Preparation.verify_internet_connection()
+    Preparation.update_system_clock()
